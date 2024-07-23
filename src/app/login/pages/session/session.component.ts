@@ -1,21 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import { merge } from 'rxjs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-session',
   standalone: true,
   imports: [CommonModule,
-            FormsModule,
             MatFormFieldModule,
             MatButtonModule,
-            MatInputModule, MatIconModule],
+            MatInputModule,
+            MatIconModule,
+            MatSlideToggleModule],
   templateUrl: './session.component.html',
   styles: `
     :host {
@@ -24,7 +26,7 @@ import { merge } from 'rxjs';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SessionComponent {
+export default class SessionComponent {
   errorMessage = signal('');
   hide = signal(true);
 
@@ -35,8 +37,7 @@ export class SessionComponent {
 
   constructor() {
     merge(this.emailFormControl.statusChanges, this.emailFormControl.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
+      .pipe(takeUntilDestroyed())      .subscribe(() => this.updateErrorMessage());
   }
 
   updateErrorMessage() {

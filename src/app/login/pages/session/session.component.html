@@ -1,27 +1,32 @@
 <div>
   <h1>Admin Panel</h1>
-  <form>
+  <!-- <form> -->
     <!-- <form class="row"> -->
-      <mat-form-field appearance="outline">
-        <mat-label>Usuario</mat-label>
-        <input matInput type="email" formControl="emailFormControl" (blur)="updateErrorMessage()" placeholder="Usuario" required />
-        @if (emailFormControl.invalid) {
-          <mat-error>{{errorMessage()}}</mat-error>
-        }
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Contraseña</mat-label>
-        <input matInput [type]="hide() ? 'password' : 'text'" />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="clickEvent($event)"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide()"
-        >
-        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-      </mat-form-field>
+    <section>
+      <div class="col-md">
+        <mat-form-field appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input matInput type="email" formControl="emailFormControl" (blur)="updateErrorMessage()" placeholder="Usuario" required />
+          @if (emailFormControl.invalid) {
+            <mat-error>{{errorMessage()}}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div class="col-md">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide() ? 'password' : 'text'" required />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-pressed]="hide()"
+          >
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </section>
     <!-- </form> -->
-  </form>
+  <!-- </form> -->
 </div>
